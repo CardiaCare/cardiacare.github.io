@@ -1065,7 +1065,7 @@ define({ "api": [
     "description": "<p>Updates patient information</p>",
     "permission": [
       {
-        "name": "Doctor"
+        "name": "Doctor|Patient"
       }
     ],
     "parameter": {
@@ -1215,7 +1215,7 @@ define({ "api": [
     "description": "<p>Shows patient information</p>",
     "permission": [
       {
-        "name": "Doctor"
+        "name": "Doctor|Patient"
       }
     ],
     "success": {
@@ -1302,7 +1302,7 @@ define({ "api": [
     "description": "<p>Shows all Questionnairies information</p>",
     "permission": [
       {
-        "name": "Doctor"
+        "name": "Doctor|Patient"
       }
     ],
     "success": {
@@ -1354,7 +1354,7 @@ define({ "api": [
     },
     "permission": [
       {
-        "name": "Doctor"
+        "name": "Doctor|Patient"
       }
     ],
     "success": {
@@ -1780,33 +1780,5 @@ define({ "api": [
     },
     "filename": "./modules/user/controllers/UserController.php",
     "groupTitle": "User"
-  },
-  {
-    "success": {
-      "fields": {
-        "Success 200": [
-          {
-            "group": "Success 200",
-            "optional": false,
-            "field": "varname1",
-            "description": "<p>No type.</p>"
-          },
-          {
-            "group": "Success 200",
-            "type": "String",
-            "optional": false,
-            "field": "varname2",
-            "description": "<p>With type.</p>"
-          }
-        ]
-      }
-    },
-    "type": "",
-    "url": "",
-    "version": "0.0.0",
-    "filename": "./doc/main.js",
-    "group": "_home_cardiacare_cardiacare_repos_emr_doc_main_js",
-    "groupTitle": "_home_cardiacare_cardiacare_repos_emr_doc_main_js",
-    "name": ""
   }
 ] });
