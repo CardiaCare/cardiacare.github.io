@@ -257,6 +257,70 @@ define({ "api": [
     "groupTitle": "Bloodpressure"
   },
   {
+    "type": "delete",
+    "url": "/patients/{patientid}/bloodpressure/{id}",
+    "title": "Delete bloodpressure",
+    "version": "1.0.0",
+    "group": "Bloodpressure",
+    "name": "DeleteBloodpressure",
+    "description": "<p>Deletes Bloodpressure</p>",
+    "parameter": {
+      "fields": {
+        "Parameter": [
+          {
+            "group": "Parameter",
+            "type": "Integer",
+            "optional": true,
+            "field": "patientid",
+            "description": "<p>Patient's id</p>"
+          },
+          {
+            "group": "Parameter",
+            "type": "Integer",
+            "optional": true,
+            "field": "id",
+            "description": "<p>Bloodpressure's id</p>"
+          }
+        ]
+      }
+    },
+    "permission": [
+      {
+        "name": "Doctor|Patient"
+      }
+    ],
+    "success": {
+      "examples": [
+        {
+          "title": "Success-Response:",
+          "content": "HTTP/1.1 404 Not found",
+          "type": "json"
+        }
+      ]
+    },
+    "error": {
+      "examples": [
+        {
+          "title": "Unauthorized",
+          "content": "HTTP/1.1 401 Unauthorized\n{\n    \"name\":\"Unauthorized\",\n    \"message\":\"You are requesting with an invalid credential.\",\n    \"code\":0,\n    \"status\":401\n}",
+          "type": "json"
+        },
+        {
+          "title": "Forbidden",
+          "content": "HTTP/1.1 403 Forbidden\n{\n    \"name\":\"Forbidden\",\n    \"message\":\"You are not allowed to perform this action.\",\n    \"code\":0,\n    \"status\":403\n}",
+          "type": "json"
+        },
+        {
+          "title": "Not found",
+          "content": "HTTP/1.1 404 Not found\n{\n    \"name\":\"Not found\",\n    \"message\":\"Not found\",\n    \"code\":0,\n    \"status\":404\n}",
+          "type": "json"
+        }
+      ]
+    },
+    "filename": "./modules/emr/controllers/BloodpressureController.php",
+    "groupTitle": "Bloodpressure"
+  },
+  {
     "type": "get",
     "url": "/patients/[patientid]/bloodpressure",
     "title": "Get bloodpressure",
@@ -546,49 +610,6 @@ define({ "api": [
   },
   {
     "type": "post",
-    "url": "/feedback",
-    "title": "Upload Feedback",
-    "version": "1.0.0",
-    "group": "Feedback",
-    "name": "CreateFeedback",
-    "description": "<p>Uploads Feedback</p>",
-    "parameter": {
-      "examples": [
-        {
-          "title": "Request-Example:",
-          "content": "{\n     \"questionnaire_id\": 120,\n     \"responds\": []\n}",
-          "type": "json"
-        }
-      ]
-    },
-    "permission": [
-      {
-        "name": "Patient"
-      }
-    ],
-    "success": {
-      "examples": [
-        {
-          "title": "Success-Response:",
-          "content": "HTTP/1.1 201 Created\n {\n     \"questionnaire_id\": \"101\",\n     \"created_at\": \"2017-02-12\",\n     \"patient_id\": 2,\n     \"id\": 19\n }",
-          "type": "json"
-        }
-      ]
-    },
-    "error": {
-      "examples": [
-        {
-          "title": "Unauthorized",
-          "content": "HTTP/1.1 401 Unauthorized\n{\n    \"name\": \"Unauthorized\",\n    \"message\": \"You are requesting with an invalid credential.\",\n    \"code\": 0,\n    \"status\": 401\n}",
-          "type": "json"
-        }
-      ]
-    },
-    "filename": "./modules/survey_v2/controllers/FeedbackController.php",
-    "groupTitle": "Feedback"
-  },
-  {
-    "type": "post",
     "url": "/patients/[patientid]/feedback",
     "title": "Upload Feedback",
     "version": "1.0.0",
@@ -642,13 +663,100 @@ define({ "api": [
     "groupTitle": "Feedback"
   },
   {
+    "type": "post",
+    "url": "/feedback",
+    "title": "Upload Feedback",
+    "version": "1.0.0",
+    "group": "Feedback",
+    "name": "CreateFeedback",
+    "description": "<p>Uploads Feedback</p>",
+    "parameter": {
+      "examples": [
+        {
+          "title": "Request-Example:",
+          "content": "{\n     \"questionnaire_id\": 120,\n     \"responds\": []\n}",
+          "type": "json"
+        }
+      ]
+    },
+    "permission": [
+      {
+        "name": "Patient"
+      }
+    ],
+    "success": {
+      "examples": [
+        {
+          "title": "Success-Response:",
+          "content": "HTTP/1.1 201 Created\n {\n     \"questionnaire_id\": \"101\",\n     \"created_at\": \"2017-02-12\",\n     \"patient_id\": 2,\n     \"id\": 19\n }",
+          "type": "json"
+        }
+      ]
+    },
+    "error": {
+      "examples": [
+        {
+          "title": "Unauthorized",
+          "content": "HTTP/1.1 401 Unauthorized\n{\n    \"name\": \"Unauthorized\",\n    \"message\": \"You are requesting with an invalid credential.\",\n    \"code\": 0,\n    \"status\": 401\n}",
+          "type": "json"
+        }
+      ]
+    },
+    "filename": "./modules/survey_v2/controllers/FeedbackController.php",
+    "groupTitle": "Feedback"
+  },
+  {
+    "type": "delete",
+    "url": "/feedback/{id}",
+    "title": "Delete feedback",
+    "version": "1.0.0",
+    "group": "Feedback",
+    "name": "DeleteFeedback",
+    "description": "<p>Deletes feedback</p>",
+    "permission": [
+      {
+        "name": "Patient"
+      }
+    ],
+    "success": {
+      "examples": [
+        {
+          "title": "Success-Response:",
+          "content": "HTTP/1.1 404 Not found",
+          "type": "json"
+        }
+      ]
+    },
+    "error": {
+      "examples": [
+        {
+          "title": "Unauthorized",
+          "content": "HTTP/1.1 401 Unauthorized\n{\n    \"name\":\"Unauthorized\",\n    \"message\":\"You are requesting with an invalid credential.\",\n    \"code\":0,\n    \"status\":401\n}",
+          "type": "json"
+        },
+        {
+          "title": "Forbidden",
+          "content": "HTTP/1.1 403 Forbidden\n{\n    \"name\":\"Forbidden\",\n    \"message\":\"You are not allowed to perform this action.\",\n    \"code\":0,\n    \"status\":403\n}",
+          "type": "json"
+        },
+        {
+          "title": "Not found",
+          "content": "HTTP/1.1 404 Not found\n{\n    \"name\":\"Not found\",\n    \"message\":\"Not found\",\n    \"code\":0,\n    \"status\":404\n}",
+          "type": "json"
+        }
+      ]
+    },
+    "filename": "./modules/survey_v2/controllers/FeedbackController.php",
+    "groupTitle": "Feedback"
+  },
+  {
     "type": "get",
     "url": "/patients/[patientid]/feedback",
     "title": "Get Feedback",
     "version": "1.0.0",
     "group": "Feedback",
     "name": "GetFeedback",
-    "description": "<p>Shows uploaded Feedbacks by curent patients</p>",
+    "description": "<p>Shows uploaded Feedbacks by current patients</p>",
     "permission": [
       {
         "name": "Doctor|Patient"
@@ -1220,6 +1328,134 @@ define({ "api": [
     "groupTitle": "Organization"
   },
   {
+    "type": "post",
+    "url": "/patients/{pid}/questionnaires/{qid}",
+    "title": "Link patient with questionnaire",
+    "version": "1.0.0",
+    "group": "Patient",
+    "name": "CreateQuestionnaireLink",
+    "parameter": {
+      "fields": {
+        "Parameter": [
+          {
+            "group": "Parameter",
+            "type": "Integer",
+            "optional": true,
+            "field": "pid",
+            "description": "<p>Patient's id</p>"
+          },
+          {
+            "group": "Parameter",
+            "type": "Integer",
+            "optional": true,
+            "field": "qid",
+            "description": "<p>Questionnaire's id</p>"
+          }
+        ]
+      },
+      "examples": [
+        {
+          "title": "Request-Example:",
+          "content": "{\n    \"version\": \"1.0.1\",\n    \"description\": \"Description\",\n    \"lang\": \"ru\",\n    \"questions\": []\n}",
+          "type": "json"
+        }
+      ]
+    },
+    "description": "<p>Link patient with questionnaire</p>",
+    "permission": [
+      {
+        "name": "Doctor"
+      },
+      {
+        "name": "Doctor"
+      }
+    ],
+    "success": {
+      "examples": [
+        {
+          "title": "Success-Response:",
+          "content": "HTTP/1.1 201 Created\n     {\n         \"id\": 2,\n         \"doctor_id\": \"2\",\n         \"version\": \"1.0.1\",\n         \"created_at\": \"2016-12-31\",\n         \"description\": \"Description\",\n         \"lang\": \"ru\"\n     }",
+          "type": "json"
+        }
+      ]
+    },
+    "error": {
+      "examples": [
+        {
+          "title": "Unauthorized",
+          "content": "HTTP/1.1 401 Unauthorized\n{\n    \"name\":\"Unauthorized\",\n    \"message\":\"You are requesting with an invalid credential.\",\n    \"code\":0,\n    \"status\":401\n}",
+          "type": "json"
+        }
+      ]
+    },
+    "filename": "./modules/emr/controllers/PatientController.php",
+    "groupTitle": "Patient"
+  },
+  {
+    "type": "delete",
+    "url": "/patients/{pid}/questionnaires/{qid}",
+    "title": "Delete  link between patient and questionnaire",
+    "version": "1.0.0",
+    "group": "Patient",
+    "name": "DeleteQuestionnaireLink",
+    "description": "<p>Delete link between patient and questionnaire</p>",
+    "parameter": {
+      "fields": {
+        "Parameter": [
+          {
+            "group": "Parameter",
+            "type": "Integer",
+            "optional": true,
+            "field": "pid",
+            "description": "<p>Patient's id</p>"
+          },
+          {
+            "group": "Parameter",
+            "type": "Integer",
+            "optional": true,
+            "field": "qid",
+            "description": "<p>Questionnaire's id</p>"
+          }
+        ]
+      }
+    },
+    "permission": [
+      {
+        "name": "Doctor"
+      }
+    ],
+    "success": {
+      "examples": [
+        {
+          "title": "Success-Response:",
+          "content": "HTTP/1.1 200 Deleted",
+          "type": "json"
+        }
+      ]
+    },
+    "error": {
+      "examples": [
+        {
+          "title": "Unauthorized",
+          "content": "HTTP/1.1 401 Unauthorized\n{\n    \"name\":\"Unauthorized\",\n    \"message\":\"You are requesting with an invalid credential.\",\n    \"code\":0,\n    \"status\":401\n}",
+          "type": "json"
+        },
+        {
+          "title": "Forbidden",
+          "content": "HTTP/1.1 403 Forbidden\n{\n    \"name\":\"Forbidden\",\n    \"message\":\"You are not allowed to perform this action.\",\n    \"code\":0,\n    \"status\":403\n}",
+          "type": "json"
+        },
+        {
+          "title": "Not found",
+          "content": "HTTP/1.1 404 Not found\n{\n    \"name\":\"Not found\",\n    \"message\":\"Not found\",\n    \"code\":0,\n    \"status\":404\n}",
+          "type": "json"
+        }
+      ]
+    },
+    "filename": "./modules/emr/controllers/PatientController.php",
+    "groupTitle": "Patient"
+  },
+  {
     "type": "put",
     "url": "/patients/{id}",
     "title": "Update patient",
@@ -1337,6 +1573,19 @@ define({ "api": [
     "version": "1.0.0",
     "group": "Patient",
     "name": "ViewAllPatients",
+    "parameter": {
+      "fields": {
+        "Parameter": [
+          {
+            "group": "Parameter",
+            "type": "Integer",
+            "optional": true,
+            "field": "id",
+            "description": "<p>Patient's id</p>"
+          }
+        ]
+      }
+    },
     "description": "<p>Shows all patients information</p>",
     "permission": [
       {
@@ -1376,6 +1625,19 @@ define({ "api": [
     "version": "1.0.0",
     "group": "Patient",
     "name": "ViewPatient",
+    "parameter": {
+      "fields": {
+        "Parameter": [
+          {
+            "group": "Parameter",
+            "type": "Integer",
+            "optional": true,
+            "field": "id",
+            "description": "<p>Patient's id</p>"
+          }
+        ]
+      }
+    },
     "description": "<p>Shows patient information</p>",
     "permission": [
       {
@@ -1412,6 +1674,164 @@ define({ "api": [
     },
     "filename": "./modules/emr/controllers/PatientController.php",
     "groupTitle": "Patient"
+  },
+  {
+    "type": "get",
+    "url": "/patients/{id}/questionnaires",
+    "title": "View patient's questionnaires",
+    "version": "1.0.0",
+    "group": "Patient",
+    "name": "ViewQuestionnaires",
+    "parameter": {
+      "fields": {
+        "Parameter": [
+          {
+            "group": "Parameter",
+            "type": "Integer",
+            "optional": true,
+            "field": "id",
+            "description": "<p>Patient's id</p>"
+          }
+        ]
+      }
+    },
+    "description": "<p>Shows patient questionnaires</p>",
+    "permission": [
+      {
+        "name": "Doctor|Patient"
+      }
+    ],
+    "success": {
+      "examples": [
+        {
+          "title": "Success-Response:",
+          "content": "     HTTP/1.1 200 OK\n[\n{\n  \"id\": 7,\n  \"doctor_id\": 12,\n  \"version\": \"0.1.1\",\n  \"description\": \"new questionnaire\",\n  \"created_at\": \"2017-02-09\",\n  \"lang\": \"En\",\n  \"emergency\": 0\n }\n]",
+          "type": "json"
+        }
+      ]
+    },
+    "error": {
+      "examples": [
+        {
+          "title": "Unauthorized",
+          "content": "HTTP/1.1 401 Unauthorized\n{\n    \"name\":\"Unauthorized\",\n    \"message\":\"You are requesting with an invalid credential.\",\n    \"code\":0,\n    \"status\":401\n}",
+          "type": "json"
+        },
+        {
+          "title": "Forbidden",
+          "content": "HTTP/1.1 403 Forbidden\n{\n    \"name\":\"Forbidden\",\n    \"message\":\"You are not allowed to perform this action.\",\n    \"code\":0,\n    \"status\":403\n}",
+          "type": "json"
+        },
+        {
+          "title": "Not found",
+          "content": "HTTP/1.1 404 Not found\n{\n    \"name\":\"Not found\",\n    \"message\":\"Not found\",\n    \"code\":0,\n    \"status\":404\n}",
+          "type": "json"
+        }
+      ]
+    },
+    "filename": "./modules/emr/controllers/PatientController.php",
+    "groupTitle": "Patient"
+  },
+  {
+    "type": "get",
+    "url": "/patients/{id}/doctors",
+    "title": "View patient's doctors",
+    "version": "1.0.0",
+    "group": "Patient",
+    "name": "Viewdoctors",
+    "parameter": {
+      "fields": {
+        "Parameter": [
+          {
+            "group": "Parameter",
+            "type": "Integer",
+            "optional": true,
+            "field": "id",
+            "description": "<p>Patient's id</p>"
+          }
+        ]
+      }
+    },
+    "description": "<p>Shows patient doctors</p>",
+    "permission": [
+      {
+        "name": "Patient"
+      }
+    ],
+    "success": {
+      "examples": [
+        {
+          "title": "Success-Response:",
+          "content": "     HTTP/1.1 200 OK\n[\n {\n  \"id\": 2,\n   \"user_id\": 12,\n   \"organization_id\": 3,\n   \"name\": \"Jon\",\n   \"patronymic\": NULL,\n   \"surname\": \"Smith\",\n   \"email\": \"smith_jon@mail.com\"\n }\n]",
+          "type": "json"
+        }
+      ]
+    },
+    "error": {
+      "examples": [
+        {
+          "title": "Unauthorized",
+          "content": "HTTP/1.1 401 Unauthorized\n{\n    \"name\":\"Unauthorized\",\n    \"message\":\"You are requesting with an invalid credential.\",\n    \"code\":0,\n    \"status\":401\n}",
+          "type": "json"
+        },
+        {
+          "title": "Forbidden",
+          "content": "HTTP/1.1 403 Forbidden\n{\n    \"name\":\"Forbidden\",\n    \"message\":\"You are not allowed to perform this action.\",\n    \"code\":0,\n    \"status\":403\n}",
+          "type": "json"
+        },
+        {
+          "title": "Not found",
+          "content": "HTTP/1.1 404 Not found\n{\n    \"name\":\"Not found\",\n    \"message\":\"Not found\",\n    \"code\":0,\n    \"status\":404\n}",
+          "type": "json"
+        }
+      ]
+    },
+    "filename": "./modules/emr/controllers/PatientController.php",
+    "groupTitle": "Patient"
+  },
+  {
+    "type": "delete",
+    "url": "/patient/{id}",
+    "title": "Delete patient",
+    "version": "1.0.0",
+    "group": "Ppatient",
+    "name": "Deletepatient",
+    "description": "<p>Deletes questionnaire</p>",
+    "permission": [
+      {
+        "name": "Doctor"
+      }
+    ],
+    "success": {
+      "examples": [
+        {
+          "title": "Success-Response:",
+          "content": "HTTP/1.1 200 Delete",
+          "type": "json"
+        }
+      ]
+    },
+    "error": {
+      "examples": [
+        {
+          "title": "Unauthorized",
+          "content": "HTTP/1.1 401 Unauthorized\n{\n    \"name\":\"Unauthorized\",\n    \"message\":\"You are requesting with an invalid credential.\",\n    \"code\":0,\n    \"status\":401\n}",
+          "type": "json"
+        },
+        {
+          "title": "Forbidden",
+          "content": "HTTP/1.1 403 Forbidden\n{\n    \"name\":\"Forbidden\",\n    \"message\":\"You are not allowed to perform this action.\",\n    \"code\":0,\n    \"status\":403\n}",
+          "type": "json"
+        },
+        {
+          "title": "Not found",
+          "content": "HTTP/1.1 404 Not found\n{\n    \"name\":\"Not found\",\n    \"message\":\"Not found\",\n    \"code\":0,\n    \"status\":404\n}",
+          "type": "json"
+        }
+      ]
+    },
+    "filename": "./modules/emr/controllers/PatientController.php",
+    "groupTitle": "Ppatient"
   },
   {
     "type": "post",
@@ -2127,5 +2547,33 @@ define({ "api": [
     },
     "filename": "./modules/user/controllers/UserController.php",
     "groupTitle": "User"
+  },
+  {
+    "success": {
+      "fields": {
+        "Success 200": [
+          {
+            "group": "Success 200",
+            "optional": false,
+            "field": "varname1",
+            "description": "<p>No type.</p>"
+          },
+          {
+            "group": "Success 200",
+            "type": "String",
+            "optional": false,
+            "field": "varname2",
+            "description": "<p>With type.</p>"
+          }
+        ]
+      }
+    },
+    "type": "",
+    "url": "",
+    "version": "0.0.0",
+    "filename": "./doc/main.js",
+    "group": "_home_cardiacare_cardiacare_repos_emr_doc_main_js",
+    "groupTitle": "_home_cardiacare_cardiacare_repos_emr_doc_main_js",
+    "name": ""
   }
 ] });
